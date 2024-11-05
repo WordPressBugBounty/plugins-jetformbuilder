@@ -4,7 +4,7 @@ Tags: blocks, forms, form builder, contact form, gutenberg, gutenberg forms, mul
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.0
-Stable tag: 3.4.2
+Stable tag: 3.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -270,7 +270,19 @@ Yes. It's a push-a-button easy to import/export and duplicate your forms using t
 = How to check the submitted form records? =
 Once you set the <a href="https://jetformbuilder.com/features/how-to-use-store-form-record-action/" target="_blank">**Store Form Record Action**</a> you can check every single submitted form field data, submission date, the status of completeness, and user name on the <a href="https://jetformbuilder.com/features/wordpress-custom-form-records-page/" target="_blank">**Form Records Page</a>.
 
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/jetformbuilder)
+
 == Changelog ==
+
+**3.4.3**
+- FIX: Server-side callback Validation
+- FIX: Dynamic value synchronization between two checkbox fields
+- FIX: Form records save when CAPTCHA fails with toggle disabled
+- FIX: `Remove mask on submit` option
+- FIX: Issue with removing repeater fields with preset when data becomes empty
+- FIX: Error when editing Mailchimp actions
+- ADD: Webhook `Timeout in seconds` setting
 
 **3.4.2**
 - FIX: Sanitization of Form Field Names
