@@ -4,7 +4,7 @@ Tags: blocks, forms, form builder, contact form, gutenberg, gutenberg forms, mul
 Requires at least: 6.1
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 3.6.2.2
+Stable tag: 3.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -274,6 +274,19 @@ Once you set the <a href="https://jetformbuilder.com/features/how-to-use-store-f
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/jetformbuilder)
 
 == Changelog ==
+
+**3.6.3**
+- FIX: Restore repeater macro filter compatibility without breaking formatted output
+- FIX: Calculated Field now correctly processes empty Multi Select values
+- FIX: Require User Access selection in Media Field settings
+- ADD: Support option labels in Fields Preview macros
+- ADD: Auto-focus search in the “New Action” modal and fix Undo (Cmd/Ctrl+Z) behavior inside action popups
+- ADD: Delete removed Media Field attachments from the Media Library on form submission
+- FIX: Prevent broken widget rendering for non-form form IDs
+- FIX: Normalize media field files after repeater re-observe
+- FIX: Duplicate HTML macro processing
+- FIX: Escape line breaks only inside calculated string values
+- FIX: Recalculate multistep page break state after binding page
 
 **3.6.2.2**
 - FIX: SSR validation privilege escalation hardening
