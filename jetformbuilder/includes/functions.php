@@ -16,6 +16,9 @@ function jet_form_builder_init() {
 
 	jet_form_builder()->get_modules()->install( new JFB_Modules\Cli\Module() );
 	jet_form_builder()->get_modules()->install( new JFB_Modules\Framework\Module() );
+
+	// Auto-run outstanding DB migrations after a plugin update (see class docblock).
+	\Jet_Form_Builder\Migrations\Auto_Migrator::instance()->init_hooks();
 }
 
 function jet_form_builder() {
@@ -92,6 +95,36 @@ function jet_fb_events(): \Jet_Form_Builder\Actions\Events_Manager {
  */
 function jet_fb_parse_dynamic( string $value ) {
 	return ( new \Jet_Form_Builder\Presets\Types\Dynamic_Preset() )->parse_json( $value );
+}
+
+/**
+ * Same as jet_fb_parse_dynamic(), but declares the string as coming from a
+ * trusted, admin-authored origin - the form's own post meta / block
+ * attributes, which require `edit_post` on the form to write.
+ *
+ * Only that makes an explicit `restricted: false` in the preset honoured, the
+ * way the editor's "Restrict access" toggle promises. Use it ONLY where the
+ * value provably comes from the stored form and never from the request:
+ *
+ * - validation rules  (modules/validation/rules-controller.php)
+ * - date min/max      (includes/classes/date-tools.php)
+ * - conditional blocks(includes/blocks/conditional-block/...)
+ * - action conditions (includes/actions/conditions/condition-instance.php)
+ * - dynamic value     (includes/blocks/dynamic-value.php)
+ *
+ * Anything parsing a submitted field value (Rich_Content) must keep using
+ * jet_fb_parse_dynamic(), where the flag is ignored and the permission check
+ * always runs. See issues-tracker #20359.
+ *
+ * @param string $value
+ *
+ * @return mixed|string
+ */
+function jet_fb_parse_dynamic_trusted( string $value ) {
+	$preset = new \Jet_Form_Builder\Presets\Types\Dynamic_Preset();
+	$preset->trust_restriction_flag( true );
+
+	return $preset->parse_json( $value );
 }
 
 function jet_fb_parse_macro( $content ): string {
